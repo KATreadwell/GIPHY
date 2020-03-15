@@ -1,0 +1,30 @@
+body{
+    font-family: 'Bangers', cursive;
+    background-image: url("../images/432931.jpg");
+    text-align: center;
+    color: steelblue;
+}
+
+#buttons-view{
+    text-shadow: black;
+    margin: 20px;
+    border: 20px;
+}
+
+.superhero{
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#superhero-form{
+    text-shadow: black;
+    margin-left: 30px;
+}
+
+#superhero-view{
+    margin-left: 30px;
+}
+
+#add-superhero{
+    margin: 20px;
+}
