@@ -1,6 +1,5 @@
-var superheroes = ["Wonder Woman", "Fairchild", "Batman", "Deadpool"]; 
-// var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=H8ekHWBMvA58EYCBvasMgLnzt5MaF9Fe&q=" + superhero + "&limit=10&offset=0&lang=en";
-    
+var superheroes = ["Wonder Woman", "Fairchild", "Batman", "Deadpool"];
+var superhero = "wonder woman" 
 
 //add a superhero button
 $("#add-superhero").on("click", function(event){
@@ -10,7 +9,6 @@ $("#add-superhero").on("click", function(event){
     superheroes.push(superhero);
     addMovieButton();
     
-
     function addMovieButton(){
         var a = $("<button>");
         for (var i = 0; i < superheroes.length; i++){
@@ -18,69 +16,37 @@ $("#add-superhero").on("click", function(event){
         a.attr("superhero-name", superheroes[i]);
         a.text(superheroes[i]);
         $("#buttons-view").append(a);
+        // $('#superhero-input').text("");
         }
     }
-})
+});
 
-
-// $(document).on("click", ".superhero", displaySuperheroInfo);{
-//         renderButtons();
-// }
-
-// function renderButtons(){
-//     $("button").on("click", function(){
-//         var superhero = $(this).attr("data-superhero");
-//         var superheroes = ["Wonder Woman", "Fairchild", "Batman", "Deadpool"]; 
-//         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=H8ekHWBMvA58EYCBvasMgLnzt5MaF9Fe&q=" + superhero + "&limit=10&offset=0&lang=en";
+function displaySuperheroInfo (){
+    var superhero = $(this).attr("superhero-name");
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=H8ekHWBMvA58EYCBvasMgLnzt5MaF9Fe&q=" + superhero + "&limit=10&offset=0&lang=en";
     
-//     $.ajax({
-//         url: queryURL,
-//         method: "GET"
-//     }).then(function(response){
-//         console.log(JSON.stringify(response));
-//         var results = response.data;
-//         $("#superheroes-view").empty();
-//         for (var i = 0; i < results.length; i++){
-//             var gifDiv = $("<div>");
-//             var rating = results[i].rating;
-//             var p = $("<p>").text("Rating: " + rating);
-//             superheroImage.attr("src", reults[i].images.fixed_height.url);
-//             var superheroesView = '$("#superheroes-view")';
-//             $("#superheroes-view").append('<img src="' + response.data.images + '">');
-//         }
-        
-//     })
-//     })
-    // $("#buttons-view").empty();
-    // for (var i=0; i<superheroes.length; i++){
-    //     var a = $("<button>");
-    //     a.addClass("superhero");
-    //     a.attr("data-name", superheroes[i]);
-    //     $("#buttons-view").append(a);
-    //         }
-    //     };
-        
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+        }).then(function(response) {
+            var results = response.data;
+            $("#superhero-view").empty();
+            for (var i = 0; i < results.length; i++) {  
+                var gifDiv = $("<div>");
+                var rating = results[i].rating;
+                var p = $("<p>").text("Rating: " + rating);
+                var superheroImage = $("<img>");
+                superheroImage.attr("src", results[i].images.fixed_height.url);
+                gifDiv.prepend(p);
+                gifDiv.prepend(superheroImage);
+                $("#superhero-view").prepend(gifDiv);
+                }
+        })
+}      
+
+$(document).on("click", ".superhero", displaySuperheroInfo);
     
-
-
-// function displaySuperheroInfo(){
-//     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=H8ekHWBMvA58EYCBvasMgLnzt5MaF9Fe&q=" + superhero + "&limit=10&offset=0&lang=en";
-//     var superhero = $(this).attr("data-name");
-//     var superheroes = ["Wonder Woman", "Fairchild", "Batman", "Deadpool"];
-
-//     $.ajax({
-//         url: queryURL,
-//         method: "GET"
-//     }).then(function(response){
-//         console.log(JSON.stringify(response));
-//         $("#superheroes-view").empty();
-//         var superheroesView = '$("#superheroes-view")';
-//         $("#superheroes-view").appen('<img src="' + response.data.images + '">');
-//     })
-      
     
-// }
-
 
 
 
