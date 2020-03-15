@@ -1,25 +1,27 @@
 var superheroes = ["Wonder Woman", "Fairchild", "Batman", "Deadpool"];
-var superhero = "wonder woman" 
+var superhero = 0;
 
-//add a superhero button
 $("#add-superhero").on("click", function(event){
     event.preventDefault();
     var superhero = $("#superhero-input").val().trim();
-    console.log("button pushed")
     superheroes.push(superhero);
-    addMovieButton();
+    addSuperheroButton();
     
-    function addMovieButton(){
+    function addSuperheroButton(){
         var a = $("<button>");
         for (var i = 0; i < superheroes.length; i++){
         a.addClass("superhero");
         a.attr("superhero-name", superheroes[i]);
         a.text(superheroes[i]);
+        a.attr("data-state", "still");
         $("#buttons-view").append(a);
         // $('#superhero-input').text("");
         }
     }
 });
+
+$(document).on("click", ".superhero", displaySuperheroInfo);
+    
 
 function displaySuperheroInfo (){
     var superhero = $(this).attr("superhero-name");
@@ -31,7 +33,18 @@ function displaySuperheroInfo (){
         }).then(function(response) {
             var results = response.data;
             $("#superhero-view").empty();
-            for (var i = 0; i < results.length; i++) {  
+            for (var i = 0; i < results.length; i++) {
+                // $(".gif").on("click", function(){
+                //     var state = $(this).attr("data-state");
+                //     if (state === "still"){
+                //         $(this).attr("src", $(this).attr("data-animate"));
+                //         $(this).attr("data-state", "animate");
+                //     }
+                //     else{
+                //         $(this).attr("src", $(this).attr("data-still"));
+                //         $(this).attr("data-state", "still");
+                //     }
+                // })
                 var gifDiv = $("<div>");
                 var rating = results[i].rating;
                 var p = $("<p>").text("Rating: " + rating);
@@ -44,7 +57,7 @@ function displaySuperheroInfo (){
         })
 }      
 
-$(document).on("click", ".superhero", displaySuperheroInfo);
+
     
     
 
