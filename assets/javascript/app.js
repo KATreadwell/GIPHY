@@ -1,5 +1,4 @@
 var superheroes = ["Venom", "Wonder Woman", "Batman", "Deadpool"];
-// var superhero;
 
 $("#add-superhero").on("click", function(event){
     event.preventDefault();
@@ -17,7 +16,6 @@ function addSuperheroButton(){
         a.addClass("superhero");
         a.attr("superhero-name", superheroes[i]);
         a.text(superheroes[i]);
-        // a.attr("data-state", "still");
         $("#buttons-view").append(a);
         $('#superhero-input').val("");
     }
@@ -53,16 +51,16 @@ function displaySuperheroInfo (e){
 }      
 
 $("#superhero-view").on("click", "img", function(){
-                    var state = $(this).attr("state");
-                    if (state === "still"){
-                        $(this).attr("src", $(this).attr("animate"));
-                        $(this).attr("state", "animate");
-                    }
-                    else{
-                        $(this).attr("src", $(this).attr("still"));
-                        $(this).attr("state", "still");
-                    }
-                })
+    var state = $(this).attr("state");
+    if (state === "still"){
+        $(this).attr("src", $(this).attr("animate"));
+        $(this).attr("state", "animate");
+        }
+    else{
+        $(this).attr("src", $(this).attr("still"));
+        $(this).attr("state", "still");
+        }
+})
     
 
 
